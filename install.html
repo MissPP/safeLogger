@@ -1,0 +1,164 @@
+<!DICTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/logger/assets/style.css" rel="stylesheet">
+    <link href="./assets/bootstrap.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #f1f2f7">
+<div class="cover">
+    <div class="lds-ring abs-center">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12 abs-center install">
+    <h2>SAFE LOGGER</h2>
+
+    <div class="page1 ">
+        <div class="row ">
+            <div class="col-sm-5 col-md-5 ">管理员账号：</div>
+            <div class="col-sm-5 col-md-5 col-12">
+                <input class="form-control" type="text" name="user">
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-5 col-md-5">管理员密码：</div>
+            <div class="col-sm-5 col-md-5 col-12"><input class="form-control" type="password" name="password"></div>
+        </div>
+        <div style="padding:15px  0 0 0">
+            <button class="next button btn btn-primary" style=""> 下一步</button>
+        </div>
+    </div>
+
+    <div class="page2 " style="display:none;">
+        <div class="row">
+            <div class="col-sm-5 col-md-5">数据库地址</div>
+            <div class="col-sm-5 col-md-5 col-12"><input class="form-control" type="text" name="host"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5 col-md-5">端口</div>
+            <div class="col-sm-5 col-md-5 col-12"><input class="form-control" type="text" name="port"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5 col-md-5">数据库账号</div>
+            <div class="col-sm-5 col-md-5 col-12"><input class="form-control" type="text" name="sqlusername"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5 col-md-5">数据库密码</div>
+            <div class="col-sm-5 col-md-5 col-12"><input class="form-control" type="password" name="sqlpassword"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5 col-md-5">库名</div>
+            <div class="col-sm-5 col-md-5 col-12"><input class="form-control" type="text" name="database"></div>
+        </div>
+        <div style="padding:15px  0 0 0">
+            <button class="btn  confirm button btn-primary" style=""> 确认</button>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="./assets/jquery.js"></script>
+<script>
+
+    var base = {};
+    base.checkPage2 = function checkPassword() {
+        var param = [];
+        var host = $(".page2 input[name='host']").val();
+        var port = $(".page2 input[name='port']").val();
+        var sqlusername = $(".page2 input[name='sqlusername']").val();
+        var sqlpassword = $(".page2 input[name='sqlpassword']").val();
+        var database = $(".page2 input[name='database']").val();
+        //空判断
+        if (host == '' || port == '' || sqlusername == '' || sqlpassword == '' || database == '') {
+            alert("信息不能为空");
+            return false;
+        }
+        return true;
+    };
+
+    base.checkPage1 = function () {
+        var user = $(".page1 input[name='user']").val();
+        var password = $(".page1 input[name='password']").val();
+        var pwdReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+        var res = pwdReg.test(password);
+        if (user == '' || password == '') {
+            alert("信息不能为空");
+            return false;
+        } else if (!res) {
+            console.log(res);
+            alert("密码必须包含6-16位英文数字");
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    $('.next').click(function () {
+        if (base.checkPage1()) {
+            $(".page1").hide();
+            $('.page2').show();
+        }
+    });
+
+    $('.confirm').click(function () {
+        if (base.checkPage2()) {
+            var user = $(".page1 input[name='user']").val();
+            var password = $(".page1 input[name='password']").val();
+            var host = $(".page2 input[name='host']").val();
+            var port = $(".page2 input[name='port']").val();
+            var sqlusername = $(".page2 input[name='sqlusername']").val();
+            var sqlpassword = $(".page2 input[name='sqlpassword']").val();
+            var database = $(".page2 input[name='database']").val();
+            $('.cover').show();
+            $.post('install.php', {
+                username: user,
+                password: password,
+                host: host,
+                port: port,
+                database: database,
+                sqlUsername: sqlusername,
+                sqlPassword: sqlpassword
+            }, function (data) {
+                if (data.status == 1) {
+                    alert('操作成功:)');
+                    $('.cover').hide();
+                    $('.msg').show(300);
+					location.href="./slentry.php?module=search"
+                }
+                else {
+                    alert('数据库已存在，或者信息错误,不能连接数据库');
+                    $('.cover').hide();
+                }
+            } ,'json');
+        }
+    });
+
+    base.check = function (page) {
+        var user = $(".page2 input[name='user']").val();
+        var password = $(".page2 input[name='password']").val();
+        var pwdReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+        var res = password.match(pwdReg);
+        return false;
+
+        if (user == '' || password == '') {
+            alert("信息不能为空");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+</script>
+
+</html>

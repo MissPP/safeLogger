@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/logger/assets/style.css" rel="stylesheet">
+    <link href="../assets/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div class="menu">
+    <div class="column-title">
+        Safe Logger System
+    </div>
+    <ul class="column">
+
+        <li class="seach-log">
+            <a href="module=search"> 查看日志 </a>
+        </li>
+        <li class="account">
+            <a href="module=account"> 账号管理 </a>
+        </li>
+        <li class="login-out">
+            <a href="controller=loginOut" onclick="loginOut()">注销</a>
+        </li>
+    </ul>
+</div>
+
+<script src="../assets/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        $('a').each(function () {
+            var relative = $(this).attr('href');
+            $(this).attr('href',getPath(relative));
+        });
+
+
+    });
+    function getPath(url){
+        var host = location.href;
+        var ROOT_PATH = host.split("slentry.php")[0];
+        return ROOT_PATH+'slentry.php/?'+url;
+    }
+    function loginOut() {
+        alert("退出成功");
+        console.log(getPath('controller=loginOut'));
+//        location.href = getPath('controller=loginOut');
+//        console.log(getPath('controller=loginOut'));
+    }
+</script>
+

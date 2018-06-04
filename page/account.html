@@ -1,0 +1,70 @@
+
+<div class="right-content change-password">
+
+    <h5 class="title" style=" ">修改您的密码</h5>
+    <div class="bg1" style="padding:15px;">
+
+        <div class="msg"></div>
+        <div class="input-name">
+            您的旧密码:
+        </div>
+        <div>
+            <input class="form-control" type="password" name="oldPass">
+        </div>
+        <div class="input-name">
+            新密码:
+        </div>
+        <div>
+            <input class="form-control" type="password" name="newPass">
+        </div>
+        <div class="input-name">
+            再次输入新密码:
+        </div>
+        <div>
+            <input class="form-control" type="password" name="again">
+        </div>
+        <button class="btn btn-success" onclick="changePasswd()" style="margin-top:10px;">确认修改</button>
+    </div>
+
+</div>
+
+
+
+<script>
+    function changePasswd() {
+        var oldPass = $('input[name = "oldPass"]').val();
+        var newPass = $('input[name = "newPass"]').val();
+        var againPass = $('input[name = "again"]').val();
+        var pwdReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+        var res = pwdReg.test(newPass);
+        if(!res){
+            showMsg("密码必须包含6-16位英文数字");
+        }
+        if (newPass != againPass) {
+            showMsg("两次密码输入不一致");
+            return 0;
+        }
+        $.post('slentry.php/?controller=account', {oldPass: oldPass, newPass: newPass}, function (data) {
+            console.log(data);
+            showMsg(data.msg);
+            if (data.status == 1) {
+                $('.msg').css('color', 'red');
+            } else if(data.status == -2){
+                alert("登录态失效");
+                location.href = "slentry.php?page=login"
+            }else {
+                $('.msg').css('color', '#000')
+            }
+        }, 'json')
+    }
+
+     showMsg = function (msg) {
+        $('.msg').html(msg);
+        $('.msg').show(200);
+        setTimeout(function(){
+            $('.msg').hide(100);
+        },3000);
+    };
+
+</script>
+

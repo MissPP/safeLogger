@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum='1'">
+    <link rel="stylesheet" href="/logger/assets/style.css">
+    <link href="../assets/bootstrap.css" rel="stylesheet">
+    <title>login</title>
+</head>
+<body>
+
+<div class="login abs-center" style="border-radius:15px;max-width: 400px;min-width:200px;">
+    <h3>Safe Logger</h3>
+    <div class="">
+        <div class="login-name">用户名:</div>
+        <div><input class="username form-control" maxlength="20" type="text"></div>
+    </div>
+    <div class="">
+        <div class="login-name">密码:</div>
+        <div><input class="password form-control" maxlength="20" type="password"></div>
+    </div>
+    <div class="msg"></div>
+    <div class="" style="padding:10px 10px 0 10px  ">
+        <button class="confirm btn btn-success"   onclick="login.login()">确定</button>
+    </div>
+
+</div>
+
+</body>
+<script src="../assets/jquery.js"></script>
+<script>
+    login = {};
+    login.login = function () {
+        var username = $('.username').val();
+        var passwd = $('.password').val();
+        $.post('slentry.php?controller=login&func=check', {type: 1, username: username, passwd: passwd}, function (data) {
+            if (data.status == 0) {
+                login.showMsg(data.msg)
+            } else {
+                login.success()
+            }
+        }, 'json')
+    };
+
+    login.showMsg = function (msg) {
+        $('.msg').html(msg);
+        $('.msg').show(200);
+        setTimeout(function(){
+            $('.msg').hide(100);
+        },3000);
+    };
+
+    login.success = function () {
+        location.href = 'slentry.php?module=search';
+    }
+
+</script>
+</html>

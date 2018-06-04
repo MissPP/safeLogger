@@ -1,0 +1,291 @@
+<div class="cover">
+    <div class="lds-ring abs-center">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="right-content right-search">
+    <h5 class="title col-md-12" style="">搜索条件</h5>
+    <div class="clear-float bg1" style="">
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag">时段:</div>
+                <div class="item-condition"><input class="form-control selectDate" type="text" name="time"></div>
+            </div>
+            <div class="calendar" style="display: none">
+                <div class="" style="width:100%;text-align:center;overflow: hidden">
+                    <span class="prevYear" style="cursor:pointer"> << </span>
+                    <span class="year" style="margin-left:37px;margin-right:37px"></span>
+                    <span class="nextYear" style="cursor:pointer"> >> </span>
+                </div>
+
+                <div class="" style="width:100%;text-align:center;overflow: hidden">
+                    <span class="prevMonth" style="cursor:pointer"> << </span>
+                    <span class="month" style="margin-left:50px;margin-right:50px"></span>
+                    <span class="nextMonth" style="cursor:pointer"> >> </span>
+                </div>
+
+                <div>
+                    <ul style="list-style: none; ">
+                        <li style="color:red;">Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Thu</li>
+                        <li>Wed</li>
+                        <li>Fri</li>
+                        <li style="color:red;">Sat</li>
+                    </ul>
+                    <ul class="day" style="list-style: none; ">
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag">错误码:</div>
+                <div class="item-condition"><input class="form-control" type="text" name="errorCode"></div>
+            </div>
+        </div>
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag">业务号:</div>
+                <div class="item-condition"><input class="form-control" type="text" name="errorArea"></div>
+            </div>
+        </div>
+
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag">错误域:</div>
+                <div class="item-condition"><input class="form-control" type="text" name="biz"></div>
+            </div>
+        </div>
+
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag">操作人:</div>
+                <div class="item-condition"><input class="form-control" type="text" name="user"></div>
+            </div>
+        </div>
+
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag">正序倒序:</div>
+                <div class="item-condition">
+                    <select class="order form-control" style="">
+                        <option value="asc">正序</option>
+                        <option value="desc">倒序</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag">内容:</div>
+                <div class="item-condition"><input class="form-control " type="text" name="content">
+                </div>
+            </div>
+        </div>
+        <div class="item col-lg-3 col-md-6 col-sm-12">
+            <div class="content">
+                <div class="item-tag" style="">操作:</div>
+                <div class="item-condition" style="min-width:100px;">
+                    <button class="btn btn-success" onclick="base.search(1)">搜索</button>
+                    <button class="btn btn-primary" onclick="base.add()">新增</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <br>
+    <h5 class="title" style="">日志明细</h5>
+
+    <table class="log table table-bordered table-hover  ">
+        <thead>
+        <tr class="th">
+            <th style="width:5%">ID</th>
+            <th style="width:30%">日志</th>
+            <th style="width:15%">时间</th>
+            <th style="width:10%">IP</th>
+            <th style="width:10%">错误码</th>
+            <th style="width:10%">错误域</th>
+            <th style="width:10%">业务</th>
+            <th style="width:10%">操作人</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="" style="padding: 15px;float: right;">
+        <span>共计数据</span>
+        <span class="page-num">0</span>
+        <span>条</span>
+        <ul class="page" style="float:left;margin-right:30px">
+            <li class="nowPage">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>
+
+</body>
+<script src="../assets/jquery.js"></script>
+<script src="../assets/calendar.js"></script>
+<script>
+    var page = {};
+    base = {};
+    user = {};
+    allPage = 30;
+    nowPageNum = 1;
+    rowNum = 2;
+    pageSize = 30;
+
+    page.render = function (nowPage) {
+        $('.page li').remove();
+        var pageNum = rowNum * 2 + 1;
+        for (var x = 0; x < pageNum; x++) {
+            if (nowPage > 3 && x == 0) {
+                $('.page').append('<li>...</li>');
+            }
+            if (nowPage - rowNum + x > 0 && nowPage - rowNum + x <= allPage) {
+                if ((nowPage - rowNum + x) == nowPage) {
+                    $('.page').append('<li class="pageNum nowPage num">' + (nowPage - rowNum + x) + '</li>');
+                } else {
+                    $('.page').append('<li class="pageNum num">' + (nowPage - rowNum + x) + '</li>');
+                }
+            }
+            if (allPage - nowPage >= 3 && (pageNum - x) == 1) {
+                $('.page').append('<li>...</li>');
+            }
+        }
+        nowPageNum = nowPage;
+        $(".pageNum").bind("click", function () {
+            base.search($(this).html());
+        });
+    };
+
+    base.search = function (pageNum) {
+        $('.cover').show();
+        //加入loading.gif
+        var order = $('.order').val();
+        var level = $('input[name = "level"]').val();
+        var content = $('input[name = "content"]').val();
+        var biz = $('input[name = "biz"]').val();
+        var time = $('input[name = "time"]').val();
+        var errorCode = $('input[name = "errorCode"]').val();
+        var errorArea = $('input[name = "errorArea"]').val();
+        var user = $('input[name = "user"]').val();
+
+        $.post('./slentry.php?controller=search', {
+            order: order,
+            level: level,
+            content: content,
+            biz: biz,
+            time: time,
+            errorCode: errorCode,
+            errorArea: errorArea,
+            user: user,
+            page: pageNum,
+            pageSize: pageSize
+        }, function (data) {
+            if (data.status == -1) {
+                alert(data.msg);
+                location.href = "slentry.php?module=login";
+            }
+            var jsonLength = getJsonLength(data);
+            $(".log tr:not(.th)").html('');
+            var html = '';
+            //最后一项为总条数
+
+            for (var x = 0; x < jsonLength - 1; x++) {
+                html += '<tr><td>' + data[x].pre_sl_id + '</td><td style="word-break:break-all;text-align: left">' + data[x].pre_sl_msg + '</td><td>' + data[x].pre_sl_insert_time + '</td><td>' + data[x].pre_sl_ip + '</td><td>' + data[x].pre_sl_code + '</td><td>' + data[x].pre_sl_ibiz + '</td><td>' + data[x].pre_sl_error_area + '</td><td>' + data[x].pre_sl_user + '</td></tr>'
+            }
+            $(".log tbody").append(html);
+
+            var allRows = Math.ceil(data['count'][0]);
+            allPage = Math.ceil(allRows / pageSize);
+            page.render(pageNum);
+            $('.page-num').html(allRows);
+            $('.cover').hide();
+        }, 'json').fail(function () {
+            alert('Fail');
+            $('.cover').hide();
+        });
+
+    };
+
+    base.add = function (pageNum) {
+        //加入loading.gif
+        var order = $('.order').val();
+        var level = $('input[name = "level"]').val();
+        var content = $('input[name = "content"]').val();
+        var biz = $('input[name = "biz"]').val();
+        var time = $('input[name = "time"]').val();
+        var errorCode = $('input[name = "errorCode"]').val();
+        var errorArea = $('input[name = "errorArea"]').val();
+        var user = $('input[name = "user"]').val();
+
+        if(content == ''){
+            alert("内容不能为空");
+            return false;
+        }
+
+        $.post('./slentry.php?controller=add', {
+            order: order,
+            level: level,
+            content: content,
+            biz: biz,
+            time: time,
+            errorCode: errorCode,
+            errorArea: errorArea,
+            user: user,
+            page: pageNum,
+            pageSize: pageSize
+        }, function (data) {
+            if (data.status == -1) {
+                alert(data.msg);
+                location.href = "slentry.php?module=login";
+            } else if (data.status == 0) {
+                alert(data.msg);
+            } else {
+                var msg = JSON.parse(data.msg);
+
+                var html = '<tr><td>' + msg[0].pre_sl_id + '</td><td style="word-break:break-all;text-align: left">' + msg[0].pre_sl_msg + '</td><td>' + msg[0].pre_sl_insert_time + '</td><td>' + msg[0].pre_sl_ip + '</td><td>' + msg[0].pre_sl_code + '</td><td>' + msg[0].pre_sl_ibiz + '</td><td>' + msg[0].pre_sl_error_area + '</td><td>' + msg[0].pre_sl_user + '</td></tr>'
+
+                $(".log ").prepend(html);
+                $('.page-num').html(parseInt($('.page-num').html())+1);
+            }
+        }, 'json');
+
+    };
+
+
+    function getJsonLength(json) {
+        var jsonLength = 0;
+        for (var i in json) {
+            jsonLength++;
+        }
+        return jsonLength;
+    }
+
+    $('.selectDate').focus(function () {
+        $('.calendar').show()
+    });
+    $('.selectDate').blur(function () {
+        $('.calendar').hide(100)
+    });
+
+    base.search(1);
+
+</script>
+</html>
