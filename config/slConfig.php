@@ -7,8 +7,8 @@
          'DATABASE' => 'safe_logger'
            );
     $slConfig["LOG"] = array(
-         'PATH' => 'H:\xampp\htdocs\logger',
-         'SQLUSERNAME' => 'default',
+         'PATH' => '/',
+         'LOGUSER' => 'default',
          'DIR' => 'log_list',
          'LOGLEVEL' => '7',
          'FILENAME' =>'safe_logger.log',

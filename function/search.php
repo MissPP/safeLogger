@@ -13,7 +13,7 @@ Class search  extends dao{
 
     public function search(){
         if(!isset($_SESSION['user'])){
-            echo outMsg("��¼̬ʧЧ",-1);
+            echo outMsg("登录态失效",-1);
 
             return false;
         }

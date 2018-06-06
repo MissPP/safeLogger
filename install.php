@@ -67,7 +67,7 @@ Class install
            );
     $slConfig["LOG"] = array(
          \'PATH\' => \'/\',
-         \'SQLUSERNAME\' => \'default\',
+         \'LOGUSER\' => \'default\',
          \'DIR\' => \'log_list\',
          \'LOGLEVEL\' => \'7\',
          \'FILENAME\' =>\'safe_logger.log\',

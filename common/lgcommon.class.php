@@ -3,7 +3,7 @@
 function wlog($log_msg, $iErrorCode = 0, $iErrorArea = 0, $iLevel = 0, $iBiz = 0, $user = null, $rootPath = null, $sFileName = null, $isSql = null)
 {
     $logger = safeLogger::getInstance();
-
+    $logger->setDir();
     $logger->write_log($log_msg, $iErrorCode, $iErrorArea, $iLevel, $iBiz, $user, $rootPath, $sFileName , $isSql );
 
 }

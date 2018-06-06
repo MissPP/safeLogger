@@ -25,19 +25,19 @@ class account extends dao
         if (isset($_SESSION['user'])) {
             $username = $_SESSION['user'];
         } else {
-            echo outMsg('µÇÂ¼×´Ì¬Ê§Ğ§', -2);
+            echo outMsg('ç™»å½•çŠ¶æ€å¤±æ•ˆ', -2);
             return 0;
         }
 
         $oldPassword = md5(md5($params['oldPass']));
         $newPassword = md5(md5($params['newPass']));
         if(!preg_match("/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/",$params['newPass'])){
-            echo outMsg("ÃÜÂë±ØĞëÎª6-16Ó¢ÎÄ¼ÓÊı×Ö", -1);
+            echo outMsg("å¯†ç å¿…é¡»ä¸º6-16è‹±æ–‡åŠ æ•°å­—", -1);
             return 0;
         };
-        //ÃÜÂëÏŞÖÆ
+        //å¯†ç é™åˆ¶
         if ($newPassword == $oldPassword) {
-            echo outMsg("ĞÂ¾ÉÃÜÂëÏàÍ¬", -1);
+            echo outMsg("æ–°æ—§å¯†ç ç›¸åŒ", -1);
             return 0;
         }
         $res = $this->getUser($username, $num);
@@ -48,13 +48,13 @@ class account extends dao
                 $res = $this->changePassword($newPassword, $username);
 
                 if ($res) {
-                    echo outMsg("ĞŞ¸ÄÃÜÂë³É¹¦ÇëÀÎ¼ÇÄúµÄÃÜÂë", 1);
+                    echo outMsg("ä¿®æ”¹å¯†ç æˆåŠŸè¯·ç‰¢è®°æ‚¨çš„å¯†ç ", 1);
                     return 1;
                 } else {
-                    throw new Exception("ÖØÖÃÃÜÂëÊ§°Ü");
+                    throw new Exception("é‡ç½®å¯†ç å¤±è´¥");
                 }
             } else {
-                echo outMsg('µ±Ç°ÃÜÂëÊäÈë´íÎó', 0);
+                echo outMsg('å½“å‰å¯†ç è¾“å…¥é”™è¯¯', 0);
                 return 0;
             }
         }

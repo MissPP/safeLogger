@@ -24,14 +24,14 @@ Class login extends dao
         if ($num > 0) {
             if ($res[0]['pre_sl_password'] == $password && !empty($res)) {
                 $_SESSION['user'] = $res[0]['pre_sl_username'];
-                echo outMsg('µÇÂ¼³É¹¦', 1);
+                echo outMsg('ç™»å½•æˆåŠŸ', 1);
                 return 1;
             } else {
-                echo outMsg('ÕËºÅ»òÕßÃÜÂë´íÎó', 0);
+                echo outMsg('è´¦å·æˆ–è€…å¯†ç é”™è¯¯', 0);
                 return 0;
             }
         } else {
-            echo outMsg('ÕËºÅ²»´æÔÚ', 0);
+            echo outMsg('è´¦å·ä¸å­˜åœ¨', 0);
             return 0;
         }
     }

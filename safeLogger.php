@@ -1,6 +1,4 @@
 <?php
-
-//use namespace register
 define('ROOT_PATH', dirname(__FILE__));
 date_default_timezone_set("PRC");
 require_once 'common/dao.class.php';
@@ -31,7 +29,7 @@ Class safeLogger
         "INFO     " => 6,
         "DEBUG    " => 7
     );
-
+    
     function __construct()
     {
     }
@@ -40,7 +38,6 @@ Class safeLogger
     {
         // TODO: Implement __clone() method.
     }
-
 
     public static function getInstance()
     {
@@ -51,7 +48,7 @@ Class safeLogger
 
     }
 	
-	//参数1: 日志内容, 参数2: 错误码,  参数3: 错误域, 参数4: 错误等级, 参数5: 业务号, 参数6: 记录者名称, 参数7: 路径, 参数8: 文件名, 参数9: 是否插入数据库
+	//参数1: 日志内容, 2: 错误码,  3: 错误域, 4: 错误等级, 5: 业务号, 6: 记录者名称, 7: 路径, 8: 文件名, 9: 是否插入数据库
 	//根据需要您完全可以只传第一个参数，别的参数会自动读取配置文件以及设定的默认值
     public function write_log($log_msg, $iErrorCode = 0, $iErrorArea = 0, $iLevel = 0, $iBiz = 0, $user = null, $rootPath = null, $sFileName = null, $isSql = null) 
     {
@@ -72,7 +69,8 @@ Class safeLogger
             "Error Code" => $iErrorCode,
             "Area code" => $iErrorArea,
             "Biz Type" => $iBiz,
-            "Level" => $iLevel
+            "Level" => $iLevel,
+            "User" => $user
         );
 
         $wMsg = json_encode($msg).PHP_EOL;
@@ -97,8 +95,7 @@ Class safeLogger
 
         return true;
     }
-
-
+    
     public function loadConfig()
     {
         $config = config::getInstance();
@@ -107,7 +104,7 @@ Class safeLogger
         $this->mLog_path = $option['LOG']['PATH'];
         $this->mLog_dir = $option['LOG']['DIR'];
         $this->mFileName = $option['LOG']['FILENAME'];
-        $this->mUser = $option['LOG']['SQLUSERNAME'];
+        $this->mUser = $option['LOG']['LOGUSER'];
         $this->mLog_level = $option['LOG']['LOGLEVEL'];
         $this->isInsertSql = $option['LOG']['ISSQL'];
 
@@ -116,20 +113,20 @@ Class safeLogger
         return $existConfig && $isFileWriteable;
 
     }
-
-    protected function setDir()
+    
+    public function setDir()
     {
         $dir = $this->mLog_path . $this->mLog_dir;
         return is_dir($dir) || @mkdir($dir, 0777);
     }
-
+    
     public function isFileWriteable()
     {
         $file = $this->mLog_path . $this->mLog_dir . '/' . $this->mFileName;
         $res = is_writable($file);
         return $res;
     }
-
+    
     public function write($msg)
     {
         $log_file = $this->mLog_path . $this->mLog_dir . '/' . $this->mFileName;
