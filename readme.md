@@ -19,7 +19,7 @@
   登录后，您可以查看或者添加您的日志
 
   (2) 记录日志:<br>
-  方法1:
+  方法1:<br>
   //write_log($log_msg, $iErrorCode = 0, $iErrorArea = 0, $iLevel = 0, $iBiz = 0, $user = null, $rootPath = null, $sFileName = null, $isSql = null) 
 
   //参数1: 日志内容, 2: 错误码,  3: 错误域, 4: 错误等级, 5: 业务号, 6: 记录者名称, 7: 路径, 8: 文件名, 9: 是否插入数据库
@@ -31,7 +31,7 @@ $log = new safeLogger();
 $log = write_log('记录了一条日志啦！');
 ```
 
-  方法2:
+  方法2:<br>
   参数同上 懒人调用
 ```
 require_once("safeLogger.php"); 
