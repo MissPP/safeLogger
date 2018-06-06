@@ -66,7 +66,7 @@ Class install
          \'DATABASE\' => \'' . $database . '\'
            );
     $slConfig["LOG"] = array(
-         \'PATH\' => \'' . ROOT_PATH . '\',
+         \'PATH\' => \'/\',
          \'SQLUSERNAME\' => \'default\',
          \'DIR\' => \'log_list\',
          \'LOGLEVEL\' => \'7\',

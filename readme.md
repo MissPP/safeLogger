@@ -1,18 +1,18 @@
-#SafeLogger
+# SafeLogger
   written by MissPP
 <br>一个轻量级的日志插件，无需担心有任何耦合插件，简单实用，易上手
-###下载
+### 下载
   解压缩包放至WEB目录内   
   example: /var/www/html   or /htdoc
 
-###1.安装
+### 1.安装
 (1)通常情况:(无需使用SQL，可以跳过此步骤，自行修改/config/config.php中相关参数，isSQL改为0即可) <br>
   进入install.html文件   
   example: 您的域名/install.html or  localhost/instal.html
   在install.html中输入您的信息。
-  可能出现的问题:安装过程中出现异常，或者已经有库名发生冲突。DROP或者换个库名再试即可。请确保您的信息正确!
+  <br>可能出现的问题:安装过程中出现异常，或者已经有库名发生冲突。DROP或者换个库名再试即可。请确保您的信息正确!
 
-###2.使用
+### 2.使用
   (1) 主页地址: 
   您的域名/slentry.php?module=search
   登录后，您可以查看或者添加您的日志
