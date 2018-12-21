@@ -1,43 +1,43 @@
 # SafeLogger
   written by MissPP
-<br>Ò»¸öÇáÁ¿¼¶µÄÈÕÖ¾²å¼þ£¬ÎÞÐèµ£ÐÄÓÐÈÎºÎñîºÏ²å¼þ£¬¼òµ¥ÊµÓÃ£¬Ò×ÉÏÊÖ
-### ÏÂÔØ
-  ½âÑ¹Ëõ°ü·ÅÖÁWEBÄ¿Â¼ÄÚ   
+<br>ä¸€ä¸ªè½»é‡çº§çš„æ—¥å¿—æ’ä»¶ï¼Œæ— éœ€æ‹…å¿ƒæœ‰ä»»ä½•è€¦åˆæ’ä»¶ï¼Œç®€å•å®žç”¨ï¼Œæ˜“ä¸Šæ‰‹
+### ä¸‹è½½
+  è§£åŽ‹ç¼©åŒ…æ”¾è‡³WEBç›®å½•å†…   
   example: /var/www/html   or /htdoc
 
-### 1.°²×°
-(1)Í¨³£Çé¿ö:(ÎÞÐèÊ¹ÓÃSQL£¬¿ÉÒÔÌø¹ý´Ë²½Öè£¬×ÔÐÐÐÞ¸Ä/config/config.phpÖÐÏà¹Ø²ÎÊý£¬isSQL¸ÄÎª0¼´¿É) <br>
-  ½øÈëinstall.htmlÎÄ¼þ   
+### 1.å®‰è£…
+(1)é€šå¸¸æƒ…å†µ:(æ— éœ€ä½¿ç”¨SQLï¼Œå¯ä»¥è·³è¿‡æ­¤æ­¥éª¤ï¼Œè‡ªè¡Œä¿®æ”¹/config/config.phpä¸­ç›¸å…³å‚æ•°ï¼ŒisSQLæ”¹ä¸º0å³å¯) <br>
+  è¿›å…¥install.htmlæ–‡ä»¶   
   example:
-  ÄúµÄÓòÃû/install.html or  localhost/instal.html
-  ÔÚinstall.htmlÖÐÊäÈëÄúµÄÐÅÏ¢¡£
-  <br>¿ÉÄÜ³öÏÖµÄÎÊÌâ:°²×°¹ý³ÌÖÐ³öÏÖÒì³££¬»òÕßÒÑ¾­ÓÐ¿âÃû·¢Éú³åÍ»¡£DROP»òÕß»»¸ö¿âÃûÔÙÊÔ¼´¿É¡£ÇëÈ·±£ÄúµÄÐÅÏ¢ÕýÈ·!
+  æ‚¨çš„åŸŸå/install.html or  localhost/instal.html
+  åœ¨install.htmlä¸­è¾“å…¥æ‚¨çš„ä¿¡æ¯ã€‚
+  <br>å¯èƒ½å‡ºçŽ°çš„é—®é¢˜:å®‰è£…è¿‡ç¨‹ä¸­å‡ºçŽ°å¼‚å¸¸ï¼Œæˆ–è€…å·²ç»æœ‰åº“åå‘ç”Ÿå†²çªã€‚DROPæˆ–è€…æ¢ä¸ªåº“åå†è¯•å³å¯ã€‚è¯·ç¡®ä¿æ‚¨çš„ä¿¡æ¯æ­£ç¡®!
 
-### 2.Ê¹ÓÃ
-  (1) Ö÷Ò³µØÖ·:<br> 
-  ÄúµÄÓòÃû/slentry.php?module=search
-  µÇÂ¼ºó£¬Äú¿ÉÒÔ²é¿´»òÕßÌí¼ÓÄúµÄÈÕÖ¾
+### 2.ä½¿ç”¨
+  (1) ä¸»é¡µåœ°å€:<br> 
+  æ‚¨çš„åŸŸå/slentry.php?module=search
+  ç™»å½•åŽï¼Œæ‚¨å¯ä»¥æŸ¥çœ‹æˆ–è€…æ·»åŠ æ‚¨çš„æ—¥å¿—
 
-  (2) ¼ÇÂ¼ÈÕÖ¾:<br>
-  ·½·¨1:<br>
+  (2) è®°å½•æ—¥å¿—:<br>
+  æ–¹æ³•1:<br>
   //write_log($log_msg, $iErrorCode = 0, $iErrorArea = 0, $iLevel = 0, $iBiz = 0, $user = null, $rootPath = null, $sFileName = null, $isSql = null) 
 
-  //²ÎÊý1: ÈÕÖ¾ÄÚÈÝ, 2: ´íÎóÂë,  3: ´íÎóÓò, 4: ´íÎóµÈ¼¶, 5: ÒµÎñºÅ, 6: ¼ÇÂ¼ÕßÃû³Æ, 7: Â·¾¶, 8: ÎÄ¼þÃû, 9: ÊÇ·ñ²åÈëÊý¾Ý¿â
+  //å‚æ•°1: æ—¥å¿—å†…å®¹, 2: é”™è¯¯ç ,  3: é”™è¯¯åŸŸ, 4: é”™è¯¯ç­‰çº§, 5: ä¸šåŠ¡å·, 6: è®°å½•è€…åç§°, 7: è·¯å¾„, 8: æ–‡ä»¶å, 9: æ˜¯å¦æ’å…¥æ•°æ®åº“
 
-  //¸ù¾ÝÐèÒªÄúÍêÈ«¿ÉÒÔÖ»´«µÚÒ»¸ö²ÎÊý£¬±ðµÄ²ÎÊý»á×Ô¶¯¶ÁÈ¡ÅäÖÃÎÄ¼þÒÔ¼°Éè¶¨µÄÄ¬ÈÏÖµ
+  //æ ¹æ®éœ€è¦æ‚¨å®Œå…¨å¯ä»¥åªä¼ ç¬¬ä¸€ä¸ªå‚æ•°ï¼Œåˆ«çš„å‚æ•°ä¼šè‡ªåŠ¨è¯»å–é…ç½®æ–‡ä»¶ä»¥åŠè®¾å®šçš„é»˜è®¤å€¼
 ```
 require_once("safeLogger.php"); 
 $log = new safeLogger();
-$log = write_log('¼ÇÂ¼ÁËÒ»ÌõÈÕÖ¾À²£¡');
+$log = write_log('è®°å½•äº†ä¸€æ¡æ—¥å¿—å•¦ï¼');
 ```
 
-  ·½·¨2:<br>
-  ²ÎÊýÍ¬ÉÏ ÀÁÈËµ÷ÓÃ
+  æ–¹æ³•2:<br>
+  å‚æ•°åŒä¸Š æ‡’äººè°ƒç”¨
 ```
 require_once("safeLogger.php"); 
-wlog('¼ÇÂ¼ÁËÒ»ÌõÈÕÖ¾À²£¡');
+wlog('è®°å½•äº†ä¸€æ¡æ—¥å¿—å•¦ï¼');
 ```
-### 3.Íü¼ÇÃÜÂë
-<br>ÐÞ¸Äpre_safe_logger_user±íÖÐpre_sl_password ÎªÄúÐÂÃÜÂëµÄmd5(md5(xxxxx))¼´¿É  
+### 3.å¿˜è®°å¯†ç 
+<br>ä¿®æ”¹pre_safe_logger_userè¡¨ä¸­pre_sl_password ä¸ºæ‚¨æ–°å¯†ç çš„md5(md5(xxxxx))å³å¯  
 
-ÍÅ¶Ó³¤ÆÚÎ¬»¤´ËÏîÄ¿£¬»¶Ó­PR£¬BUG·´À¡£¬ËùÐèºÏÀí¹¦ÄÜÎÒÃÇ¶¼»áÀ©Õ¹¹¦ÄÜ¡£»¶Ó­ÁªÏµQQ£º565378270
+æ¬¢è¿ŽPRï¼ŒBUGåé¦ˆã€‚æ¬¢è¿Žè”ç³»QQï¼š565378270
