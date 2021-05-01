@@ -1,6 +1,6 @@
 # SafeLogger
   written by MissPP
-<br>一个轻量级的统合日志管理插件，无耦合插件(beta)
+<br>一个轻量级的统合日志管理插件+UI 你可以在任何地方引用它
 ### 下载
   解压缩包放至WEB目录内   
   example: /var/www/html   or /htdoc
