@@ -46,4 +46,4 @@ wlog('记录了一条日志啦！');
 ### 3.忘记密码
 <br>修改pre_safe_logger_user表中pre_sl_password 为您新密码的md5(md5(xxxxx))即可  
 
-欢迎PR，建议反馈。欢迎联系QQ：565378270
+ 
