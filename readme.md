@@ -12,7 +12,6 @@
   您的域名/install.html or  localhost/instal.html
   在install.html中输入您的信息。
   
-  ![image](https://github.com/MissPP/safeLogger/raw/master/assets/images/log0.png)
   <br>可能出现的问题:安装过程中出现异常，或者已经有库名发生冲突。DROP或者换个库名再试即可。请确保您的信息正确!
 
 ### 2.使用
@@ -40,8 +39,6 @@ require_once("safeLogger.php");
 wlog('记录了一条日志啦！');
 ```
 
-效果如下：(需开启sql配置)
-  ![image](https://github.com/MissPP/safeLogger/raw/master/assets/images/log2.png)
 
 ### 3.忘记密码
 <br>修改pre_safe_logger_user表中pre_sl_password 为您新密码的md5(md5(xxxxx))即可  
